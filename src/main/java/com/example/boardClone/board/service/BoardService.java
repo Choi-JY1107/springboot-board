@@ -49,4 +49,12 @@ public class BoardService {
             return null;
         }
     }
+
+    public BoardDTO update(BoardDTO boardDTO) {
+        // spring JPA에서는 save 메소드를 이용하여 insert와 update를 동시에 함
+        // 단 update에는 primary key인 id가 있기에 이를 통해 update와 insert를 구분함
+        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO);
+        boardRepository.save(boardEntity);
+        return findById(boardDTO.getId());
+    }
 }

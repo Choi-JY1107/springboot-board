@@ -53,4 +53,20 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         return "detail";
     }
+
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        BoardDTO board = boardService.update(boardDTO);
+        model.addAttribute("board", board);
+        return "detail";
+        // 밑의 방법은 조회 수가 늘어나기 때문에 비추
+        // return "redirect:/board/" + boardDTO.getId();
+    }
 }
