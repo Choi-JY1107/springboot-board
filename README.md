@@ -7,6 +7,8 @@
 - mysql
 - Spring Data JPA
 - Thymeleaf
+## 기본 구조
+![](https://gmlwjd9405.github.io/images/spring-framework/spring-package-flow.png)
 ## 주요 기능
 1. 글 쓰기 `/board/save` [Code](https://github.com/Choi-JY1107/springboot-board/blob/main/src/main/java/com/example/boardClone/board/controller/BoardController.java#L29-L35)
 2. 전체 글 목록 `/board/` [Code](https://github.com/Choi-JY1107/springboot-board/blob/main/src/main/java/com/example/boardClone/board/controller/BoardController.java#L37-L43)
