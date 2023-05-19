@@ -47,22 +47,25 @@ public class BoardService {
                 6. board_table에 해당 데이터 save 처리
                 7. board_file_table에 해당 데이터 save 처리
              */
-            MultipartFile boardFile = boardDTO.getBoardFile(); // 1
-            String originalFileName = boardFile.getOriginalFilename(); // 2
-            String storedFileName = System.currentTimeMillis() + "_" + originalFileName; // 3
-            String savePath = "C:/CJY/study/springboot/boardClone/media/" + storedFileName; // 4
-            boardFile.transferTo(new File(savePath)); // 5
-
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long saveId = boardRepository.save(boardEntity).getId();
             BoardEntity board = boardRepository.findById(saveId).get();
             // 굳이 boardEntity를 쓰지 않고 board를 쓰는 이유 : id값이 없어서
 
-            BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(board, originalFileName, storedFileName);
-            boardFileRepository.save(boardFileEntity);
+            for (MultipartFile boardFile: boardDTO.getBoardFile()) {
+                // MultipartFile boardFile = boardDTO.getBoardFile(); // 1
+                String originalFileName = boardFile.getOriginalFilename(); // 2
+                String storedFileName = System.currentTimeMillis() + "_" + originalFileName; // 3
+                String savePath = "C:/CJY/study/springboot/boardClone/media/" + storedFileName; // 4
+                boardFile.transferTo(new File(savePath)); // 5
+
+                BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(board, originalFileName, storedFileName);
+                boardFileRepository.save(boardFileEntity);
+            }
         }
     }
 
+    @Transactional
     public List<BoardDTO> findAll() {
         List<BoardEntity> boardEntityList = boardRepository.findAll();
         List<BoardDTO> boardDTOList = new ArrayList<>();
@@ -77,6 +80,7 @@ public class BoardService {
         boardRepository.updateHits(id);
     }
 
+    @Transactional
     public BoardDTO findById(Long id) {
         Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
         if (optionalBoardEntity.isPresent()) {
