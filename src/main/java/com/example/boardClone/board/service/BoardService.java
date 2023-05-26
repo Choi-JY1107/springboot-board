@@ -50,7 +50,7 @@ public class BoardService {
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long saveId = boardRepository.save(boardEntity).getId();
             BoardEntity board = boardRepository.findById(saveId).get();
-            // 굳이 boardEntity를 쓰지 않고 board를 쓰는 이유 : id값이 없어서
+            // 굳이 boardEntity를 쓰지 않고 board를 쓰는 이유 : toSaveFileEntity를 하기 전까지는 id값이 없어서
 
             for (MultipartFile boardFile: boardDTO.getBoardFile()) {
                 // MultipartFile boardFile = boardDTO.getBoardFile(); // 1

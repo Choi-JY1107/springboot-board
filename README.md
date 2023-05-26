@@ -1,5 +1,7 @@
 # springboot 게시판 클론코딩
-[참고하는 강의](https://www.youtube.com/playlist?list=PLV9zd3otBRt7jmXvwCkmvJ8dH5tR_20c0)
+[강의](https://www.youtube.com/playlist?list=PLV9zd3otBRt7jmXvwCkmvJ8dH5tR_20c0)
+
+[강의 깃허브](https://github.com/codingrecipe1/board)
 ## 개발환경
 - IDE: IntelliJ IDEA Community
 - Spring Boot 2.6.13
@@ -21,6 +23,13 @@
 7. 파일(이미지) 첨부하기
    - 단일 파일 첨부
    - 다중 파일 첨부
+8. 댓글 처리하기
+   - 글 상세 페이지에서 댓글 입력 (ajax)
+   - 상세조회할 때 기존에 작성된 댓글 목록이 보임
+   - 댓글 입력할 때 기존 댓글 목록에 새로 작성한 댓글 추가
+   - 댓글용 테이블 필요
+
+
 
 ## 직접 해결할 점
 - [ ] 글 삭제 시, 글 작성 시 입력한 비밀번호를 작성해야 삭제할 수 있는 인증 기능
