@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.stream.events.Comment;
+
+import com.example.boardClone.board.dto.CommentDTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,4 +35,12 @@ public class CommentEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+
+    public static CommentEntity toSaveEntity(CommentDTO commentDTO, BoardEntity boardEntity) {
+        CommentEntity commentEntity = new CommentEntity();
+        commentEntity.setCommentWriter(commentDTO.getCommentWriter());
+        commentEntity.setCommentContents(commentDTO.getCommentContents());
+        commentEntity.setBoardEntity(boardEntity);
+        return commentEntity;
+    }
 }
