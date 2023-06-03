@@ -52,7 +52,6 @@
 
 <!-- 댓글 출력 부분 -->
 <div id="comment-list">
-
     <table>
         <tr>
             <th>댓글번호</th>
@@ -76,8 +75,7 @@
         const contents = document.getElementById("commentContents").value;
         console.log("작성자: ", writer);
         console.log("내용: ", contents);
-
-        const id = [[${board.id}]]; // 게시글 번호
+        const id = [[${board.id}]];
         $.ajax({
             // 요청방식: post, 요청주소: /comment/save, 요청데이터: 작성자, 작성내용, 게시글번호
             type: "post",
@@ -113,11 +111,10 @@
         });
 
     }
-
     const listReq = () => {
         console.log("목록 요청");
         const page = [[${page}]];
-        location.href = "/board/paging?page=" + page;
+        location.href = "/board/paging?page="+page;
     }
     const updateReq = () => {
         console.log("수정 요청");
